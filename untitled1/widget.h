@@ -1,6 +1,6 @@
-#ifndef WIDGET_H
+﻿#ifndef WIDGET_H
 #define WIDGET_H
-
+#pragma execution_character_set("utf-8")
 #include <QWidget>
 #include "linklist.h"
 #include "calculatepos.h"

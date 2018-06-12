@@ -1,4 +1,4 @@
-#include "widget.h"
+﻿#include "widget.h"
 #include "ui_widget.h"
 #include "calculatepos.h"
 #include <QtMath>
@@ -13,7 +13,7 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
-
+    this->setWindowTitle("动态物体定位与跟踪系统");
     dataReceive *dr = new dataReceive;
     QObject::connect( dr, SIGNAL(update()), this, SLOT(mySlot()) );
 
@@ -30,8 +30,28 @@ void Widget::on_pushButton_clicked()
     QString pos1 = ui->lineEdit_2->text();
     QString pos2 = ui->lineEdit_3->text();
     bool ok;
-    ui->label_5->setGeometry(620+pos1.toInt(&ok,10),160,31,16);
-    ui->label_4->setGeometry(620+pos2.toInt(&ok,10),160,31,16);
+    if(pos1.toInt(&ok,10)>=0&&pos1.toInt(&ok,10)<=500)
+    {
+        ui->label_5->setGeometry(620+pos1.toInt(&ok,10),160,31,16);
+        qDebug("数值合理");
+    }
+    else
+    {
+        ui->label_5->setGeometry(620+0,160,31,16);
+        qDebug("数值越界");
+        ui->label_8->setText("天线位置数值越界");
+    }
+    if(pos2.toInt(&ok,10)>=0&&pos2.toInt(&ok,10)<=500)
+    {
+        ui->label_4->setGeometry(620+pos2.toInt(&ok,10),160,31,16);
+        qDebug("数值合理");
+    }
+    else
+    {
+        ui->label_4->setGeometry(620+0,160,31,16);
+        qDebug("数值越界");
+        ui->label_8->setText("天线位置数值越界");
+    }
 
     QString ip;
     ip = ui->lineEdit->text();
@@ -45,11 +65,15 @@ void Widget::on_pushButton_clicked()
     if(connectRes == 0)
     {
         ui->label_2->setText("连接成功");
+        qDebug("IP地址正确");
         //changeTable();
 
     }
     else
+        {
         ui->label_2->setText("连接失败");
+        qDebug("IP地址错误");
+        }
 
 }
 
@@ -105,10 +129,14 @@ void Widget::changeTable()
         li.GetElem(i,&ss1,&cc1,&ii1,&dd1);
         int i1= i+1;
         li.GetElem(i1,&ss2,&cc2,&ii2,&dd2);
-        if(dd1>100&&dd1<130)
+        /*if(dd1>600)
+            dd1 = dd1/3;
+        else if(dd1>400)
             dd1 = dd1/2;
-        if(dd2>100&&dd2<130)
-            dd2 = dd2/2;
+        if(dd2>600)
+            dd2 = dd2/3;
+        else if(dd2>400)
+            dd1 = dd2/2;*/
 
         if(ss1 == 33)
             cp.calculate(ui->label_5->x(),ui->label_4->x(),dd1,dd2,&x,&y);

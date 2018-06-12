@@ -59,7 +59,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
    </property>
   </widget>
   <widget class="QTableWidget" name="tableWidget">
@@ -205,6 +205,32 @@
     <string>58</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>100</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>数值范围0~500</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>140</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>label</zorder>
   <zorder>label_2</zorder>
   <zorder>tableWidget</zorder>
@@ -220,6 +246,8 @@
   <zorder>label_38</zorder>
   <zorder>label_39</zorder>
   <zorder>label_58</zorder>
+  <zorder>label_3</zorder>
+  <zorder>label_8</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
